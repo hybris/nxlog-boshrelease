@@ -1,0 +1,5 @@
+check process logstash-shipper
+  with pidfile /var/vcap/sys/run/logstash-shipper/logstash-shipper.pid
+  start program "/var/vcap/jobs/logstash-shipper/bin/monit_debugger logstash_shipper_ctl '/var/vcap/jobs/logstash-shipper/bin/logstash_shipper_ctl start'"
+  stop program "/var/vcap/jobs/logstash-shipper/bin/monit_debugger logstash_shipper_ctl '/var/vcap/jobs/logstash-shipper/bin/logstash_shipper_ctl stop'"
+  group vcap

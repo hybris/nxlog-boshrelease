@@ -1,0 +1,63 @@
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Detect # of CPUs so make jobs can be parallelized
+CPUS=$(grep -c ^processor /proc/cpuinfo)
+ # Available variables
+# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
+# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
+export HOME=/var/vcap
+
+
+tar -xzf nxlog/apr-1.5.1.tar.gz
+tar -xzf nxlog/expat-2.1.0.tar.gz
+tar -xzf nxlog/openssl-1.0.1h.tar.gz
+tar -xzf nxlog/pcre-8.35.tar.gz
+tar -xzf nxlog/nxlog-ce-2.8.1248.tar.gz
+
+# Apache Portable Runtime
+pushd apr-1.5.1
+./configure --prefix=${BOSH_INSTALL_TARGET}/deps/apr
+make -j${CPUS} && make install
+popd
+
+# Expat XML Parser
+pushd expat-2.1.0
+./configure --prefix=${BOSH_INSTALL_TARGET}/deps/expat
+make -j${CPUS} && make install
+popd
+
+# OpenSSL
+pushd openssl-1.0.1h
+./config -DSSL_ALLOW_ADH --shared --prefix=${BOSH_INSTALL_TARGET}/deps/openssl --openssldir=${BOSH_INSTALL_TARGET}/deps/openssldir
+make && make install
+popd
+
+# Perl Compatible Regular Expressions
+pushd pcre-8.35
+./configure --prefix=${BOSH_INSTALL_TARGET}/deps/pcre
+make -j${CPUS} && make install
+popd
+
+# nxlog | open-source multi-platform log management
+pushd nxlog-ce-2.8.1248
+
+# APRCONFIG - apr-1-config tool with path
+export APRCONFIG="${BOSH_INSTALL_TARGET}/deps/apr/bin/apr-1-config"
+
+# PCRECONFIG - pcre-config tool with path
+export PCRECONFIG="${BOSH_INSTALL_TARGET}/deps/pcre/bin/pcre-config"
+
+# CPPFLAGS - (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if you have headers in a nonstandard directory <include dir>
+export CPPFLAGS="-I${PWD}/../expat-2.1.0/lib -I${BOSH_INSTALL_TARGET}/deps/openssl/include -I${PWD}/../pcre-8.35"
+
+# LDFLAGS - linker flags, e.g. -L<lib dir> if you have libraries in a nonstandard directory <lib dir>
+export LDFLAGS="-L${BOSH_INSTALL_TARGET}/deps/expat/lib -L${BOSH_INSTALL_TARGET}/deps/openssl/lib"
+
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make -j${CPUS} && make install
+
+unset LDFLAGS
+unset CPPFLAGS
+unset PCRECONFIG
+unset APRCONFIG
