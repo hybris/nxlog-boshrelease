@@ -30,7 +30,7 @@ LogLevel INFO
     InputType     LineBased
     PollInterval  5
 
-    Exec          if (file_name() =~ /logstash-shipper/) drop();
+    Exec          if (file_name() =~ /(monit|logstash\-shipper)/) drop();
     Exec          $bosh_deployment = "<%= spec.deployment %>";
     Exec          $bosh_job_name = "<%= name %>";
     Exec          $bosh_job_index = "<%= index %>";
