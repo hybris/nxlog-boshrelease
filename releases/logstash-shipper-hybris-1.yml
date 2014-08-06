@@ -1,0 +1,22 @@
+---
+packages:
+- name: nxlog
+  version: !binary |-
+    MWFhMjA0MDBhYzNlMDE1NzM5MGM3Yzk0YzlhZTFkNGVlY2QyYzY4Ng==
+  sha1: !binary |-
+    MTdjZjlkOTY4MzI0OTM1ZGJjY2E2ZDQ2Y2MxY2FkYzFhZmM3ZWI4OQ==
+  fingerprint: !binary |-
+    MWFhMjA0MDBhYzNlMDE1NzM5MGM3Yzk0YzlhZTFkNGVlY2QyYzY4Ng==
+  dependencies: []
+jobs:
+- name: logstash-shipper
+  version: !binary |-
+    ZGJjODA3ZDQ2ZGU1YzllZmQxYmI3ZTg0ODAyY2IwNWRjZTkzMTYxMA==
+  fingerprint: !binary |-
+    ZGJjODA3ZDQ2ZGU1YzllZmQxYmI3ZTg0ODAyY2IwNWRjZTkzMTYxMA==
+  sha1: !binary |-
+    NTA1NWEzOTAzYjFiY2U5N2MwODdlMjhkNGYzNTc4YjI4MzgyMTQ2Yg==
+commit_hash: e5f63ce1
+uncommitted_changes: true
+name: logstash-shipper-hybris
+version: '1'
