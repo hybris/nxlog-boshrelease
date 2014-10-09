@@ -1,0 +1,16 @@
+---
+packages:
+- name: nxlog
+  version: 1aa20400ac3e0157390c7c94c9ae1d4eecd2c686
+  sha1: 17cf9d968324935dbcca6d46cc1cadc1afc7eb89
+  fingerprint: 1aa20400ac3e0157390c7c94c9ae1d4eecd2c686
+  dependencies: []
+jobs:
+- name: logstash-shipper
+  version: d5f87869db5681b762a09ba8618a4198c5bee414
+  fingerprint: d5f87869db5681b762a09ba8618a4198c5bee414
+  sha1: 4c2b8fb9e54d06c81fec2f40a8fd4d92903735a4
+commit_hash: c4d07398
+uncommitted_changes: false
+name: logstash-shipper-hybris
+version: '2.0'
