@@ -19,11 +19,11 @@ LogLevel INFO
 ########################################
 <Input in_files>
     Module        im_file
-    File          "/var/vcap/sys/log/*.log"
+    File          "/var/vcap/data/sys/log/*.log"
     Recursive     true
     SavePos       true
     InputType     LineBased
-    PollInterval  5
+    PollInterval  <%= p("nxlog.pollinterval") %>
 
     Exec          if (file_name() =~ /(monit|logstash\-shipper)/) drop();
     Exec          $bosh_deployment = "<%= spec.deployment %>";

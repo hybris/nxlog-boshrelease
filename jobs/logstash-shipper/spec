@@ -16,3 +16,6 @@ properties:
   logstash.server:
     description: Logstash server where the log should be sent
     default: localhost:5000
+  nxlog.pollinterval:
+    description: Specifies in seconds how frequently the module will check for new files and new log entries.
+    default: 10

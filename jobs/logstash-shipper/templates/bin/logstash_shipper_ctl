@@ -14,10 +14,15 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
+    # Setup logrotate to run hourly instead!
+    if [ -f "/etc/cron.daily/logrotate" ]; then
+      mv -f /etc/cron.daily/logrotate /etc/cron.hourly/
+    fi
+
     exec chpst -u vcap:vcap /var/vcap/packages/nxlog/bin/nxlog \
-        -c $JOB_DIR/config/logstash_shipper.conf \
-        >>$LOG_DIR/$JOB_NAME.stdout.log \
-        2>>$LOG_DIR/$JOB_NAME.stderr.log
+      -c $JOB_DIR/config/logstash_shipper.conf \
+      1>>$LOG_DIR/$JOB_NAME.stdout.log \
+      2>>$LOG_DIR/$JOB_NAME.stderr.log
 
     # store pid in $PIDFILE
     echo $! > $PIDFILE
