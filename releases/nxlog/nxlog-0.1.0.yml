@@ -1,0 +1,29 @@
+---
+packages:
+- name: nxlog
+  version: !binary |-
+    MWFhMjA0MDBhYzNlMDE1NzM5MGM3Yzk0YzlhZTFkNGVlY2QyYzY4Ng==
+  fingerprint: !binary |-
+    MWFhMjA0MDBhYzNlMDE1NzM5MGM3Yzk0YzlhZTFkNGVlY2QyYzY4Ng==
+  sha1: !binary |-
+    ZTM3NmM2ZjJiMWMzODA0YzdmMThhN2JkYjVhZDc5MjkxNmM4YzViNQ==
+  dependencies: []
+jobs:
+- name: nxlog
+  version: !binary |-
+    ZmEwMTgyNDY4Njg3M2IxMWJmM2NjM2ZlNTY1Y2ZkMDM2YjA0ODI4Mg==
+  fingerprint: !binary |-
+    ZmEwMTgyNDY4Njg3M2IxMWJmM2NjM2ZlNTY1Y2ZkMDM2YjA0ODI4Mg==
+  sha1: !binary |-
+    MTZhN2Q4YWQ1NDg5OGJiYmFlNjY4YjVhNjJhYzNkODE1MzdlZTIzMg==
+license:
+  version: !binary |-
+    NTY5YTQ4MTY2M2Y5NWIxMGNiODAzNTM5YmE2MWE4YzI0YTg4MTQ2Mw==
+  fingerprint: !binary |-
+    NTY5YTQ4MTY2M2Y5NWIxMGNiODAzNTM5YmE2MWE4YzI0YTg4MTQ2Mw==
+  sha1: !binary |-
+    MmRiYjgzZWM4ZjBlNGJjMDhlYzA3YjgzNGUwZTA1ZTkzNzI4MTg1Ng==
+commit_hash: e774a9ff
+uncommitted_changes: true
+name: nxlog
+version: 0.1.0
