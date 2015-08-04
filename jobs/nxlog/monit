@@ -1,0 +1,5 @@
+check process nxlog
+  with pidfile /var/vcap/sys/run/nxlog/nxlog.pid
+  start program "/var/vcap/jobs/nxlog/bin/monit_debugger nxlog_ctl '/var/vcap/jobs/nxlog/bin/nxlog_ctl start'"
+  stop program "/var/vcap/jobs/nxlog/bin/monit_debugger nxlog_ctl '/var/vcap/jobs/nxlog/bin/nxlog_ctl stop'"
+  group vcap

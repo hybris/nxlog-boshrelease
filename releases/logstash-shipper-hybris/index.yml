@@ -1,9 +1,0 @@
----
-builds:
-  6a1a81d2-e406-4bbf-ac15-ad9538ac0ed5:
-    version: '1.1'
-  9053d237-f337-40d4-bfab-80bc83fa18de:
-    version: '2.0'
-  b8c52a71-fe4b-427e-8f49-a034099c2639:
-    version: '2.1'
-format-version: '2'

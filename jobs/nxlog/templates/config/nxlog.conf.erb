@@ -1,0 +1,52 @@
+########################################
+# Global directives                    #
+########################################
+CacheDir /var/vcap/store/nxlog
+PidFile /var/vcap/sys/run/nxlog/nxlog.pid
+LogFile /var/vcap/sys/log/nxlog/nxlog.log
+LogLevel INFO
+
+########################################
+# Modules                              #
+########################################
+
+<Extension syslog>
+  Module        xm_syslog
+</Extension>
+
+########################################
+# Routes                               #
+########################################
+<Input in_files>
+  Module        im_file
+  File          "/var/vcap/data/sys/log/*.log"
+  Recursive     true
+  SavePos       true
+  InputType     LineBased
+  PollInterval  <%= p("nxlog.pollinterval") %>
+
+  Exec          if (file_name() =~ /(monit|nxlog)/) drop();
+  Exec          $bosh_deployment = "<%= spec.deployment %>";
+  Exec          $bosh_job_name = "<%= name %>";
+  Exec          $bosh_job_index = "<%= index %>";
+  Exec          $filename = file_name();
+  Exec          $EventReceivedTime = undef;
+  Exec          $SourceModuleName = undef;
+  Exec          $SourceModuleType = undef;
+</Input>
+
+<Output out1>
+<% if p("nxlog.tcpoutput.host", nil) && p("nxlog.tcpoutput.port", nil) %>
+  Module        om_tcp
+  Host          <%= p('nxlog.tcpoutput.host') %>
+  Port          <%= p('nxlog.tcpoutput.port') %>
+  Exec          to_syslog_ietf();
+  OutputType    LineBased
+<% else %>
+  Module        om_null
+<% end %>
+</Output>
+
+<Route route1>
+    Path          in_files => out1
+</Route>

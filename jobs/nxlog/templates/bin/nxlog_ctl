@@ -4,7 +4,7 @@ set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
 # Setup env vars and folders for the webapp_ctl script
-source /var/vcap/jobs/logstash-shipper/helpers/ctl_setup.sh 'logstash-shipper'
+source /var/vcap/jobs/nxlog/helpers/ctl_setup.sh 'nxlog'
 
 export PORT=${PORT:-5000}
 export LANG=en_US.UTF-8
@@ -20,7 +20,7 @@ case $1 in
     fi
 
     exec chpst -u vcap:vcap /var/vcap/packages/nxlog/bin/nxlog \
-      -c $JOB_DIR/config/logstash_shipper.conf \
+      -c $JOB_DIR/config/nxlog.conf \
       1>>$LOG_DIR/$JOB_NAME.stdout.log \
       2>>$LOG_DIR/$JOB_NAME.stderr.log
 
@@ -34,7 +34,7 @@ case $1 in
 
     ;;
   *)
-    echo "Usage: logstash_shipper_ctl {start|stop}"
+    echo "Usage: nxlog_ctl {start|stop}"
 
     ;;
 

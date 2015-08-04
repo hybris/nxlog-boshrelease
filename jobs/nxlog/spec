@@ -1,21 +1,22 @@
 ---
-name: logstash-shipper
+name: nxlog
 
 packages:
   - nxlog
 
 templates:
   bin/monit_debugger: bin/monit_debugger
-  bin/logstash_shipper_ctl: bin/logstash_shipper_ctl
-  config/logstash_shipper.conf.erb: config/logstash_shipper.conf
+  bin/nxlog_ctl: bin/nxlog_ctl
+  config/nxlog.conf.erb: config/nxlog.conf
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 
 properties:
-  logstash.server:
-    description: Logstash server where the log should be sent
-    default: localhost:5000
+  nxlog.tcpoutput.host:
+    description: Host where the log should be sent
+  nxlog.tcpoutput.port:
+    description: Port where the log should be sent
   nxlog.pollinterval:
     description: Specifies in seconds how frequently the module will check for new files and new log entries.
     default: 10

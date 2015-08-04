@@ -2,18 +2,17 @@ meta:
   environment: (( merge ))
   dns_root: (( merge ))
   security_groups: (( merge ))
-  network_name: (( merge ))
+  persistent_disk: 4096
 
   stemcell:
     name: bosh-aws-xen-ubuntu
     version: latest
 
 jobs:
-  - name: logstash-shipper_z1
-    instances: 2
+  - name: nxlog
     networks:
-      - name: (( meta.network_name ))
-    properties: {}
+      - name: nxlog1
+    persistent_disk: (( meta.persistent_disk ))
 
 compilation:
   cloud_properties:
@@ -28,7 +27,7 @@ networks:
   - name: floating
     type: vip
     cloud_properties: {}
-  - name: (( meta.network_name ))
+  - name: nxlog1
     type: dynamic
     cloud_properties:
       security_groups: (( meta.security_groups ))

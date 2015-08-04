@@ -1,6 +1,5 @@
 meta:
-  environment: logstash-shipper-warden
-  network_name: (( merge ))
+  environment: nxlog-warden
 
   stemcell:
     name: bosh-warden-boshlite-ubuntu
@@ -13,12 +12,9 @@ update:
   update_watch_time: 1000-30000
 
 jobs:
-  - name: logstash_shipper_z1
-    instances: 2
+  - name: nxlog
     networks:
-      - name: (( meta.network_name ))
-        static_ips: ~
-    properties: {}
+      - name: nxlog1
 
 compilation:
   cloud_properties:
@@ -30,7 +26,7 @@ resource_pools:
       name: random
 
 networks:
-- name: (( meta.network_name ))
+- name: nxlog1
   # Assumes up to 5 VMs, including 1 static and 4 dynamic.
   # Plus 5 (double the size) unused IPs, due to BOSH bug/quirk.
   subnets:

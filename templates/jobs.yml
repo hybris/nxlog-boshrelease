@@ -9,14 +9,14 @@ update:
   serial: false
 
 jobs:
-  - name: logstash_shipper_z1
-    template: logstash-shipper
-    instances: 0
+  - name: nxlog
+    templates:
+    - name: nxlog
+      release: nxlog
+    instances: 1
+    persistent_disk: 0
     resource_pool: small_z1
     networks: (( merge ))
-    update:
-      canaries: 10
-    properties: {}
 
 networks: (( merge ))
 
