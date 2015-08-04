@@ -1,0 +1,21 @@
+---
+nxlog/expat-2.1.0.tar.gz:
+  object_id: 5a49d92e-36f8-4438-a1d1-00021d161754
+  sha: b08197d146930a5543a7b99e871cba3da614f6f0
+  size: 562616
+nxlog/apr-1.5.1.tar.gz:
+  object_id: 86454c38-2b90-45ac-81ec-ce08912b7123
+  sha: 9caa83e3f50f3abc9fab7c4a3f2739a12b14c3a3
+  size: 1020833
+nxlog/nxlog-ce-2.8.1248.tar.gz:
+  object_id: 7d9633bc-683e-4752-8bfc-a7690c51dd26
+  sha: 91f187cec141819cf46f448418e5818fb68b4d38
+  size: 2552618
+nxlog/openssl-1.0.1h.tar.gz:
+  object_id: 4cc7830c-1af2-4f5d-be82-f85946012e30
+  sha: b2239599c8bf8f7fc48590a55205c26abe560bf8
+  size: 4475692
+nxlog/pcre-8.35.tar.gz:
+  object_id: 62a62956-4564-4e5c-b8c8-7e882ae22278
+  sha: 5a0efc7332c6741114372020a60acfed22befcb9
+  size: 1996552
