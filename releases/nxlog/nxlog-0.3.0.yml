@@ -1,0 +1,20 @@
+---
+packages:
+- name: nxlog
+  version: 1aa20400ac3e0157390c7c94c9ae1d4eecd2c686
+  fingerprint: 1aa20400ac3e0157390c7c94c9ae1d4eecd2c686
+  sha1: e376c6f2b1c3804c7f18a7bdb5ad792916c8c5b5
+  dependencies: []
+jobs:
+- name: nxlog
+  version: a19c6cf9d4f80392b1c86e997cad4f0d988d4b20
+  fingerprint: a19c6cf9d4f80392b1c86e997cad4f0d988d4b20
+  sha1: 517467e6c3beb8a52137e7fd7e9ecc752de7637a
+license:
+  version: 20f5c57713d88e62da7ca2d033365f09d096cfb2
+  fingerprint: 20f5c57713d88e62da7ca2d033365f09d096cfb2
+  sha1: 0821962d8b9eec6713f9e716c3abb1753226a264
+commit_hash: 6a67137a
+uncommitted_changes: true
+name: nxlog
+version: 0.3.0
