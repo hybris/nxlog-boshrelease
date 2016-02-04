@@ -1,10 +1,12 @@
 ########################################
 # Global directives                    #
 ########################################
+
 CacheDir /var/vcap/store/nxlog
 PidFile /var/vcap/sys/run/nxlog/nxlog.pid
 LogFile /var/vcap/sys/log/nxlog/nxlog.log
 LogLevel INFO
+
 
 ########################################
 # Modules                              #
@@ -14,18 +16,20 @@ LogLevel INFO
   Module        xm_syslog
 </Extension>
 
+
 ########################################
 # Routes                               #
 ########################################
-<Input in_files>
+<% p("nxlog.input.files").each_with_index do |file, idx| %>
+<Input in_file_<%= idx %>>
   Module        im_file
-  File          "/var/vcap/data/sys/log/*.log"
-  Recursive     true
+  File          "<%= file['path'] %>"
+  Recursive     <%= file['recursive'] %>
   SavePos       true
   InputType     LineBased
   PollInterval  <%= p("nxlog.pollinterval") %>
 
-  Exec          if (file_name() =~ /(monit|nxlog)/) drop();
+  <% if file['exclude'].length > 0 %>Exec          if (file_name() =~ /<%= file['exclude'] %>/) drop();<% end %>
   Exec          $bosh_deployment = "<%= spec.deployment %>";
   Exec          $bosh_job_name = "<%= name %>";
   Exec          $bosh_job_index = "<%= index %>";
@@ -34,8 +38,9 @@ LogLevel INFO
   Exec          $SourceModuleName = undef;
   Exec          $SourceModuleType = undef;
 </Input>
+<% end %>
 
-<Output out1>
+<Output out>
 <% if p("nxlog.tcpoutput.host", nil) && p("nxlog.tcpoutput.port", nil) %>
   Module        om_tcp
   Host          <%= p('nxlog.tcpoutput.host') %>
@@ -48,5 +53,5 @@ LogLevel INFO
 </Output>
 
 <Route route1>
-    Path          in_files => out1
+    Path          <% p("nxlog.input.files").length.times do |idx| %>in_file_<%= idx %><% if idx < p("nxlog.input.files").length-1 %>, <% end %><% end %> => out
 </Route>

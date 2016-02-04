@@ -20,3 +20,14 @@ properties:
   nxlog.pollinterval:
     description: Specifies in seconds how frequently the module will check for new files and new log entries.
     default: 10
+  nxlog.input.files:
+    description: |
+      Array of files to check
+        path: path to file
+        recursive: to look recursively into folder
+        exclude: regex of file/dir pattern to exclude
+      - {path: "/var/vcap/data/sys/log/*.log", recursive: true, exclude: "(monit|nxlog)"}
+      - {path: "/var/log/kernel.log", recursive: false, exclude: ""}
+      - {path: "/var/log/test.log", recursive: false, exclude: ""}
+    default:
+      - {path: "/var/vcap/data/sys/log/*.log", recursive: true, exclude: "(monit|nxlog)"}

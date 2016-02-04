@@ -20,4 +20,11 @@ jobs:
 
 networks: (( merge ))
 
-properties: {}
+properties:
+  nxlog:
+    input:
+      files:
+        - { path: "/var/log/syslog", recursive: false, exclude: "" }
+        - { path: "/var/log/dpkg.log", recursive: false, exclude: "" }
+        - { path: "/var/log/messages", recursive: false, exclude: "" }
+        - { path: "/var/vcap/data/sys/log/*.log", recursive: true, exclude: "(monit|nxlog)" }
