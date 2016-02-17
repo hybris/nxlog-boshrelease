@@ -19,7 +19,7 @@ case $1 in
       mv -f /etc/cron.daily/logrotate /etc/cron.hourly/
     fi
 
-    exec chpst -u vcap:vcap:adm:admin /var/vcap/packages/nxlog/bin/nxlog \
+    exec chpst -u <%= p('nxlog.runas') %> /var/vcap/packages/nxlog/bin/nxlog \
       -c $JOB_DIR/config/nxlog.conf \
       1>>$LOG_DIR/$JOB_NAME.stdout.log \
       2>>$LOG_DIR/$JOB_NAME.stderr.log
