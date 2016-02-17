@@ -31,3 +31,6 @@ properties:
       - {path: "/var/log/test.log", recursive: false, exclude: ""}
     default:
       - {path: "/var/vcap/data/sys/log/*.log", recursive: true, exclude: "(monit|nxlog)"}
+  nxlog.runas:
+    description: "An optional user:group[:group] string for specifying what user and group(s) to run nxlog as"
+    default:     "vcap:vcap:adm:admin"
